@@ -1,0 +1,20 @@
+{
+  "name": "gat-sport-auth-site",
+  "version": "1.0.0",
+  "description": "GAT Sport Product Authentication Site",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": ["authentication", "product-verification", "gat-sport"],
+  "author": "GAT Sport",
+  "license": "MIT"
+}
+

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>GAT Sport</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-spy="scroll" data-target="#navbar_main" data-offset="80">
+    <div class="preloader active" style="display: none;">
+        <img class="preloader__spinner" alt="Loading..." src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='38' viewBox='0 0 38 38'%3E%3Cdefs%3E%3ClinearGradient x1='8.042%' y1='0%' x2='65.682%' y2='23.865%' id='a'%3E%3Cstop stop-color='%23fff' stop-opacity='0' offset='0%'/%3E%3Cstop stop-color='%23007bff' stop-opacity='.631' offset='63.146%'/%3E%3Cstop stop-color='%23007bff' offset='100%'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(1 1)' stroke='url(%23a)' stroke-width='2'%3E%3Ccircle stroke-opacity='.5' cx='18' cy='18' r='18'/%3E%3Cpath d='M36 18c0-9.94-8.06-18-18-18'%3E%3CanimateTransform attributeName='transform' type='rotate' from='0 18 18' to='360 18 18' dur='0.9s' repeatCount='indefinite'/%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E" />
+    </div>
+
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#section_banner">
+                    <img alt="GAT Sport" src="https://gpas-gfe-prd-e3d6bnade2gch4fv.a01.azurefd.net/gs26/2773f61e-001d-4f73-9c1f-5386dba4a9eb.png">
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section_banner" id="section_banner">
+        <div class="banner__carousel__img" data-images="https://gpas-gfe-prd-e3d6bnade2gch4fv.a01.azurefd.net/gs26/67e54209-7bc6-4dc5-a1cb-1f69db759ec7.jpg" style="position: absolute; z-index: 0; background: none;">
+            <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 100vh; width: 100%; z-index: -999998; position: absolute;">
+                <img src="https://gpas-gfe-prd-e3d6bnade2gch4fv.a01.azurefd.net/gs26/67e54209-7bc6-4dc5-a1cb-1f69db759ec7.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 100%; height: 100%; max-height: none; max-width: none; z-index: -999999; left: 0px; top: 0px; object-fit: cover;">
+            </div>
+        </div>
+        <div id="banner__carousel" class="">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h2 class="page-header text-white text-center animate-down animate-xs-step-0">
+                                    GAT SPORT AUTHENTICATION SITE
+                                </h2>
+                                <div class="page-subheader text-white-muted text-center animate-down animate-xs-step-1">
+                                    <p style="text-align: center">
+                                        <span style="color: rgba(44, 62, 80, 1)">
+                                            <strong>
+                                                <span style="font-size: 16px">Welcome to the GAT Sport's Authentication Site utilizing GPAS technology. Please authenticate your product</span>
+                                            </strong>
+                                        </span>
+                                    </p>
+                                </div>
+                                <form id="authform" class="authform" novalidate="novalidate">
+                                    <div class="text-center bigtext" id="productCodeDisplay">267365954593</div>
+                                    <input id="Code" name="Code" type="hidden" value="267365954593">
+                                </form>
+                                <div class="text-center">
+                                    <button type="button" class="btn btn-primary animate-down authbutton" onclick="verifyProduct()">
+                                        VERIFY MY PRODUCT
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="authresponse" class="section_features"></section>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="success-icon">✓</div>
+            <h2 class="success-title">YOUR PRODUCT IS AUTHENTIC</h2>
+            <p class="success-message">Thank you for your purchase of a genuine GAT Sport product</p>
+            
+            <div class="guilloche-section">
+                <h3 class="guilloche-title">SECURITY PATTERN VERIFICATION</h3>
+                <p class="guilloche-instruction">Compare the pattern below with the one on your product packaging to ensure authenticity.</p>
+                
+                <div class="guilloche-image-container">
+                    <div class="guilloche-pattern" id="guillochePattern"></div>
+                </div>
+                
+                <div class="comparison-instructions">
+                    <h4>How to verify:</h4>
+                    <ol>
+                        <li>Look for the security pattern on your product packaging</li>
+                        <li>Compare it with the pattern shown above</li>
+                        <li>If patterns match, your product is authentic</li>
+                        <li>If patterns don't match, contact GAT Sport support</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <button class="close-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="errorModal" class="modal" style="display: none;">
+        <div class="modal-content error">
+            <div class="error-icon">✗</div>
+            <h2 class="error-title">INVALID PRODUCT CODE</h2>
+            <p class="error-message">This product code is not recognized in our system. Please check the code and try again.</p>
+            <button class="close-btn" onclick="closeErrorModal()">Close</button>
+        </div>
+    </div>
+
+    <div style="height:60px;"></div>
+    <footer class="section_footer">
+        <div>
+            <div class="row">
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <p class="footer__copyright">
+                        <span id="footer__year">2025</span> © <span>GAT Sport</span>
+                    </p>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <ul class="footer__social">
+                        <li>
+                            <a class="twitter" href="https://www.instagram.com/gatsupplements/" target="_blank">
+                                <i class="ion-social-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="facebook" href="https://www.facebook.com/gatsupplements/" target="_blank">
+                                <i class="ion-social-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="youtube" href="https://www.youtube.com/user/TeamGATonline" target="_blank">
+                                <i class="ion-social-youtube"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="instagram" href="https://www.instagram.com/gatsupplements/" target="_blank">
+                                <i class="ion-social-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
