@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Shop Now and Learn More buttons now open in new tabs - no modal needed
+
     // Auto-verify only when explicitly requested via ?auto=1
     if (currentProductCode && autoVerify) {
         // Simulate button state if present
@@ -73,6 +75,9 @@ function renderInlineSuccess(product) {
       <div class="col-sm-12">
         <h2 class="page-header text-center" style="margin-top:10px;margin-bottom:18px;"><span>Product Details</span></h2>
       </div>
+      <div class="col-sm-12 text-center" style="margin-bottom:16px;">
+        <a href="https://gatsport.com/collections/essentials" target="_blank" id="moreInfoBtn" class="btn btn-primary">More product information</a>
+      </div>
       <div class="col-sm-12"><hr></div>
       <div class="row" style="margin-top:28px;">
         <div class="col-md-6" style="padding-right:22px;">
@@ -89,6 +94,8 @@ function renderInlineSuccess(product) {
     if (!imageUrl) {
         generateGuillochePattern(currentProductCode);
     }
+
+    // More Product Information button now opens in new tab - no modal needed
 }
 
 function renderInlineError(message) {
@@ -133,6 +140,11 @@ async function verifyProduct() {
 
         if (data && data.success) {
             renderInlineSuccess(data.product || {});
+            // Reveal GAT Gear section after successful verification
+            const gearSection = document.getElementById('section_utility1');
+            if (gearSection) gearSection.style.display = 'block';
+            const aboutSection = document.getElementById('section_utility2');
+            if (aboutSection) aboutSection.style.display = 'block';
         } else {
             renderInlineError((data && data.message) || 'Invalid product code.');
         }

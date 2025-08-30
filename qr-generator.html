@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAT Sport QR Code Generator</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1b4b96;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .qr-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .qr-code {
+            margin: 20px 0;
+        }
+        .code-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: monospace;
+        }
+        .url-info {
+            color: #666;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        button {
+            background: #1b4b96;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #134083;
+        }
+        .download-btn {
+            background: #28a745;
+        }
+        .download-btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 GAT Sport QR Code Generator</h1>
+        
+        <div class="qr-section">
+            <h3>📱 Generate QR Codes for Product Authentication</h3>
+            <p>Click the buttons below to generate QR codes for each product code:</p>
+            
+            <div id="qrCodes"></div>
+        </div>
+    </div>
+
+    <script>
+        // Your product codes
+        const productCodes = [
+            '111222333444',
+            '222333444555', 
+            '333444555666',
+            '444555666777',
+            '555666777888',
+            '666777888999',
+            '777888999000',
+            '888999000111'
+        ];
+
+        // Base URL (change this to your actual domain)
+        const baseUrl = 'https://gat.gpaservices.com/GS26/QR?c=';
+
+        // Generate QR codes for all product codes
+        function generateAllQRCodes() {
+            const container = document.getElementById('qrCodes');
+            container.innerHTML = '';
+
+            productCodes.forEach((code, index) => {
+                const url = baseUrl + code;
+                const qrSection = document.createElement('div');
+                qrSection.className = 'qr-section';
+                
+                qrSection.innerHTML = `
+                    <h4>Product Code ${index + 1}</h4>
+                    <div class="code-info">
+                        <strong>Code:</strong> ${code}<br>
+                        <strong>URL:</strong> ${url}
+                    </div>
+                    <div class="qr-code" id="qr-${index}"></div>
+                    <button class="download-btn" onclick="downloadQR(${index}, '${code}')">
+                        📥 Download QR Code
+                    </button>
+                `;
+                
+                container.appendChild(qrSection);
+                
+                // Generate QR code
+                QRCode.toCanvas(document.getElementById(`qr-${index}`), url, {
+                    width: 200,
+                    margin: 2,
+                    color: {
+                        dark: '#1b4b96',
+                        light: '#FFFFFF'
+                    }
+                }, function (error) {
+                    if (error) console.error(error);
+                });
+            });
+        }
+
+        // Download QR code as image
+        function downloadQR(index, code) {
+            const canvas = document.querySelector(`#qr-${index} canvas`);
+            if (canvas) {
+                const link = document.createElement('a');
+                link.download = `gat-qr-${code}.png`;
+                link.href = canvas.toDataURL();
+                link.click();
+            }
+        }
+
+        // Generate QR codes when page loads
+        window.onload = generateAllQRCodes;
+    </script>
+</body>
+</html>

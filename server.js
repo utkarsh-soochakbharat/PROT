@@ -5,109 +5,104 @@ const crypto = require('crypto');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
-app.use(express.json());
+// Serve static files
 app.use(express.static('public'));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-// In-memory storage for demo purposes (use database in production)
-const products = new Map();
-
-// Static guilloche images available under public/images
-const imageFiles = [
-  '1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg'
-];
-
-function getImageUrlForCode(code) {
-  if (!imageFiles.length) return null;
-  // Use sha256 for stable, well-distributed mapping across images
-  const hex = crypto.createHash('sha256').update(String(code)).digest('hex');
-  const num = parseInt(hex.slice(0, 8), 16); // 32-bit segment
-  const index = num % imageFiles.length;
-  return `/images/${imageFiles[index]}`;
-}
+// Your existing valid codes
 const validCodes = new Set([
-  '267365954593',
-  '123456789012',
-  '987654321098',
-  '555666777888',
-  '111222333444'
+    '111222333444',
+    '222333444555', 
+    '333444555666',
+    '444555666777',
+    '555666777888',
+    '666777888999',
+    '777888999000',
+    '888999000111'
 ]);
 
-// Generate some sample products
-validCodes.forEach(code => {
-  products.set(code, {
-    id: code,
-    name: 'Premium Protein Supplement',
-    brand: 'GAT Sport',
-    isAuthentic: true,
-    imageUrl: getImageUrlForCode(code)
-  });
+// Function to get image URL for a product code
+function getImageUrlForCode(code) {
+    // Map specific codes to specific images
+    const codeToImageMap = {
+        '111222333444': '/images/1.jpg',
+        '222333444555': '/images/2.jpg',
+        '333444555666': '/images/3.jpg',
+        '444555666777': '/images/4.jpg',
+        '555666777888': '/images/5.jpg',
+        '666777888999': '/images/6.jpg',
+        '777888999000': '/images/7.jpg',
+        '888999000111': '/images/8.jpg'
+    };
+    
+    return codeToImageMap[code] || null;
+}
+
+// Generate a random valid code for QR codes
+function getRandomValidCode() {
+    const codes = Array.from(validCodes);
+    const randomIndex = Math.floor(Math.random() * codes.length);
+    return codes[randomIndex];
+}
+
+// API endpoint to get a random code for QR generation
+app.get('/api/random-code', (req, res) => {
+    const randomCode = getRandomValidCode();
+    res.json({ 
+        code: randomCode,
+        url: `https://gat.gpaservices.com/GS26/QR?c=${randomCode}`
+    });
 });
 
-// Routes
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-// Friendly QR endpoints → redirect to UI with query params
-app.get('/verify/:code', (req, res) => {
-  const code = encodeURIComponent(req.params.code || '');
-  return res.redirect(`/?c=${code}`);
-});
-
-// Auto-verify variant
-app.get('/verify/:code/auto', (req, res) => {
-  const code = encodeURIComponent(req.params.code || '');
-  return res.redirect(`/?c=${code}&auto=1`);
-});
-
-// Short aliases
-app.get('/v/:code', (req, res) => {
-  const code = encodeURIComponent(req.params.code || '');
-  return res.redirect(`/?c=${code}`);
-});
-app.get('/a/:code', (req, res) => {
-  const code = encodeURIComponent(req.params.code || '');
-  return res.redirect(`/?c=${code}&auto=1`);
-});
-
-// API endpoint to verify product
+// API endpoint to verify product codes
 app.post('/api/verify', (req, res) => {
-  const { code } = req.body;
-  
-  if (!code) {
-    return res.json({ 
-      success: false, 
-      message: 'Please provide a product code' 
-    });
-  }
+    const { code } = req.body;
+    
+    if (!code) {
+        return res.status(400).json({ 
+            success: false, 
+            message: 'No code provided' 
+        });
+    }
+    
+    if (validCodes.has(code)) {
+        const imageUrl = getImageUrlForCode(code);
+        res.json({
+            success: true,
+            product: {
+                code: code,
+                imageUrl: imageUrl,
+                name: 'GAT Sport Product',
+                description: 'Authentic GAT Sport supplement'
+            }
+        });
+    } else {
+        res.json({
+            success: false,
+            message: 'Invalid product code'
+        });
+    }
+});
 
-  const product = products.get(code);
-  
-  if (product && product.isAuthentic) {
-    // Always (re)compute imageUrl to be safe and send a plain JSON object
-    const imageUrl = product.imageUrl || getImageUrlForCode(code);
-    res.json({
-      success: true,
-      product: {
-        id: product.id,
-        name: product.name,
-        brand: product.brand,
-        isAuthentic: product.isAuthentic,
-        imageUrl
-      },
-      message: 'Product verified successfully'
-    });
-  } else {
-    res.json({
-      success: false,
-      message: 'Invalid product code or counterfeit product detected'
-    });
-  }
+// Handle the new URL structure: /GS26/QR?c=CODE
+app.get('/GS26/QR', (req, res) => {
+    const code = req.query.c;
+    if (code) {
+        // Redirect to main page with the code parameter
+        res.redirect(`/?c=${code}`);
+    } else {
+        // If no code provided, redirect to main page
+        res.redirect('/');
+    }
+});
+
+// Serve the main page
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-  console.log(`GAT Sport authentication site ready for QR code scanning`);
+    console.log(`Server running on port ${PORT}`);
+    console.log(`Access your site at: http://localhost:${PORT}`);
+    console.log(`QR Code URL format: http://localhost:${PORT}/GS26/QR?c=CODE`);
 });

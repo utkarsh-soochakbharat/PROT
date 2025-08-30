@@ -661,7 +661,69 @@ footer {
 .footer__copyright { color: #114b9a; }
 .footer__copyright a { color: #114b9a !important; text-decoration: none; }
 .footer__copyright a:hover { text-decoration: underline; }
-.footer__social { list-style: none; margin: 0; padding: 0; display: none; }
+.footer__social { 
+    list-style: none; 
+    margin: 0; 
+    padding: 0; 
+    display: flex; 
+    justify-content: flex-end; 
+    gap: 15px; 
+}
+
+.footer__social li {
+    display: inline-block;
+}
+
+.footer__social a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: #e5e7eb;
+    border-radius: 50%;
+    color: #6b7280;
+    text-align: center;
+    line-height: 40px;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer__social a:hover {
+    background: #1b4b96;
+    color: white;
+}
+
+/* Twitter/X Icon */
+.footer__social .twitter {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236b7280'%3E%3Cpath d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z'/%3E%3C/svg%3E");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Facebook Icon */
+.footer__social .facebook {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236b7280'%3E%3Cpath d='M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z'/%3E%3C/svg%3E");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* YouTube Icon */
+.footer__social .youtube {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236b7280'%3E%3Cpath d='M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z'/%3E%3C/svg%3E");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Instagram Icon */
+.footer__social .instagram {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236b7280'%3E%3Cpath d='M12.017 0C8.396 0 7.927.01 6.684.072 5.443.134 4.597.27 3.842.512c-.789.306-1.459.717-2.126 1.384S.668 3.053.36 3.842C.118 4.597-.018 5.443-.08 6.684-.142 7.927-.152 8.396-.152 12.017c0 3.624.01 4.09.072 5.333.062 1.24.198 2.086.44 2.841.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.756.242 1.602.378 2.841.44C7.927 23.99 8.396 24 12.017 24c3.624 0 4.09-.01 5.333-.072 1.24-.062 2.086-.198 2.841-.44.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.242-.756.378-1.602.44-2.841.062-1.24.072-1.709.072-5.333 0-3.621-.01-4.09-.072-5.333-.062-1.24-.198-2.086-.44-2.841-.306-.788-.718-1.459-1.384-2.126C19.76.668 19.091.256 18.302-.05 17.547-.292 16.701-.428 15.46-.49 14.217-.552 13.748-.562 12.017-.562c-3.624 0-4.09.01-5.333.072-1.24.062-2.086.198-2.841.44-.788.306-1.459.718-2.126 1.384-.666.667-1.079 1.335-1.384 2.126-.242.756-.378 1.602-.44 2.841C.01 7.927 0 8.396 0 12.017c0 3.624.01 4.09.072 5.333.062 1.24.198 2.086.44 2.841.306.788.718 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.756.242 1.602.378 2.841.44 1.24.062 1.709.072 5.333.072z'/%3E%3Cpath d='M12.017 5.838a6.18 6.18 0 1 0 0 12.359 6.18 6.18 0 0 0 0-12.36zM12.017 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM18.4 4.155a1.44 1.44 0 0 0-2.88 0 1.44 1.44 0 0 0 2.88 0z'/%3E%3C/svg%3E");
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
 /* Center navbar brand/logo */
 .navbar { position: sticky; top: 0; z-index: 5; }
