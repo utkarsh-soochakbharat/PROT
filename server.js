@@ -48,9 +48,11 @@ function getRandomValidCode() {
 // API endpoint to get a random code for QR generation
 app.get('/api/random-code', (req, res) => {
     const randomCode = getRandomValidCode();
+    // Get the base URL dynamically
+    const baseUrl = req.protocol + '://' + req.get('host');
     res.json({ 
         code: randomCode,
-        url: `https://gat.gpaservices.com/GS26/QR?c=${randomCode}`
+        url: `${baseUrl}/GS26/QR?c=${randomCode}`
     });
 });
 
