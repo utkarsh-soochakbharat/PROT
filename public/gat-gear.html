@@ -5,15 +5,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>GAT Gear Collection</title>
   <style>
-    body { margin: 0; font-family: Montserrat, Arial, sans-serif; color: #0b2141; background: #ffffff; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-    header { padding: 10px 0 20px; border-bottom: 1px solid #e5e7eb; margin-bottom: 20px; }
-    h1 { font-size: 28px; margin: 0; }
-    .notice { background: #f3f6fb; border: 1px solid #dee6f5; padding: 12px 14px; border-radius: 8px; color: #134083; margin-bottom: 16px; }
-    .content { width: 100%; }
-    img { max-width: 100%; height: auto; }
-    iframe { max-width: 100%; border: 0; }
-    .hidden { display: none; }
+    body { 
+      margin: 0; 
+      font-family: Montserrat, Arial, sans-serif; 
+      color: #0b2141; 
+      background: #ffffff; 
+      overflow-x: hidden;
+    }
+    .container { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 20px; 
+    }
+    header { 
+      padding: 10px 0 20px; 
+      border-bottom: 1px solid #e5e7eb; 
+      margin-bottom: 20px; 
+    }
+    h1 { 
+      font-size: 28px; 
+      margin: 0; 
+      text-align: center;
+    }
+    .notice { 
+      background: #f3f6fb; 
+      border: 1px solid #dee6f5; 
+      padding: 12px 14px; 
+      border-radius: 8px; 
+      color: #134083; 
+      margin-bottom: 16px; 
+    }
+    .content { 
+      width: 100%; 
+    }
+    img { 
+      max-width: 100%; 
+      height: auto; 
+      display: block;
+      margin: 0 auto;
+    }
+    iframe { 
+      max-width: 100%; 
+      border: 0; 
+    }
+    .hidden { 
+      display: none; 
+    }
+    
+    /* Mobile responsive styles */
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+      
+      h1 {
+        font-size: 24px;
+      }
+      
+      header {
+        padding: 5px 0 15px;
+        margin-bottom: 15px;
+      }
+      
+      .notice {
+        padding: 10px 12px;
+        font-size: 14px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 5px;
+      }
+      
+      h1 {
+        font-size: 20px;
+      }
+      
+      header {
+        padding: 5px 0 10px;
+        margin-bottom: 10px;
+      }
+    }
   </style>
 </head>
 <body>

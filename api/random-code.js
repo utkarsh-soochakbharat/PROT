@@ -33,6 +33,6 @@ export default function handler(req, res) {
 
     res.status(200).json({ 
         code: randomCode,
-        url: `${baseUrl}/GS26/QR?c=${randomCode}`
+        url: `${baseUrl}/api/qr?c=${randomCode}`
     });
 }

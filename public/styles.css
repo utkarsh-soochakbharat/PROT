@@ -57,6 +57,7 @@ body {
     box-shadow: 0 0 0 6px #000 inset, 0 8px 24px rgba(0,0,0,0.08);
     margin: 20px auto 60px;
     display: block;
+    max-width: 100%;
 }
 
 #authresponse #guillochePattern {
@@ -64,6 +65,36 @@ body {
     height: 360px;
     box-shadow: 0 0 0 4px #e6e6e6 inset, 0 8px 24px rgba(0,0,0,0.08);
     margin: 20px auto 60px;
+    max-width: 100%;
+}
+
+/* Responsive fixes for authentication result images */
+@media (max-width: 768px) {
+    #authresponse #guillocheImage {
+        width: 280px;
+        height: 280px;
+        margin: 15px auto 40px;
+    }
+    
+    #authresponse #guillochePattern {
+        width: 240px;
+        height: 240px;
+        margin: 15px auto 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    #authresponse #guillocheImage {
+        width: 220px;
+        height: 220px;
+        margin: 10px auto 30px;
+    }
+    
+    #authresponse #guillochePattern {
+        width: 180px;
+        height: 180px;
+        margin: 10px auto 30px;
+    }
 }
 
 /* Header styles - Exact GAT Sport logo */
@@ -480,101 +511,239 @@ footer {
 
 /* Responsive design - Exact GAT Sport mobile layout */
 @media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+    
     .container {
-        padding: 15px;
+        padding: 10px;
+        max-width: 100%;
     }
     
-    .verify-header {
-        top: 25px;
-        left: 25px;
+    /* Fix navbar positioning */
+    .navbar {
+        position: relative;
     }
     
-    .logo h1::before {
-        font-size: 2.5rem;
+    .navbar .container {
+        padding: 10px 15px;
     }
     
-    .logo h1::after {
-        font-size: 1.2rem;
-        letter-spacing: 4px;
+    .navbar-brand img {
+        height: 35px;
     }
     
-    .auth-content {
-        padding: 50px 35px;
-        margin: 20px;
-        border-radius: 20px;
+    /* Fix banner section */
+    .section_banner {
+        min-height: 100vh;
+        padding: 0;
     }
     
-    .auth-title {
-        font-size: 2rem;
-        letter-spacing: 2px;
+    .carousel-inner, .item {
+        height: 100vh;
+        padding: 20px 0;
     }
     
-    .auth-subtitle {
-        font-size: 1rem;
-        margin-bottom: 50px;
+    .banner__carousel__img {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
     }
     
-    .code-number {
-        font-size: 3rem;
-        letter-spacing: 3px;
+    .backstretch img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
     }
     
-    .verify-btn {
-        padding: 25px 45px;
-        font-size: 1.2rem;
-        letter-spacing: 2px;
+    /* Fix main content positioning */
+    .section_banner .container {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 60px 20px 20px;
     }
     
+    .page-header {
+        font-size: 24px !important;
+        line-height: 1.2;
+        margin-bottom: 15px;
+        text-align: center;
+        padding: 0 10px;
+    }
+    
+    .page-subheader p {
+        font-size: 14px !important;
+        line-height: 1.4;
+        margin-bottom: 30px;
+        padding: 0 10px;
+    }
+    
+    .bigtext {
+        font-size: 28px !important;
+        letter-spacing: 1px;
+        margin: 20px auto;
+        word-break: break-all;
+        padding: 0 10px;
+    }
+    
+    .btn-primary {
+        padding: 15px 30px;
+        font-size: 14px;
+        letter-spacing: 1px;
+        margin: 20px 0;
+    }
+    
+    /* Fix modal responsiveness */
     .modal-content {
-        padding: 40px 25px;
-        margin: 20px;
-        border-radius: 20px;
+        padding: 30px 20px;
+        margin: 10px;
+        border-radius: 15px;
+        max-height: 95vh;
+        overflow-y: auto;
     }
     
     .guilloche-pattern {
-        width: 220px;
-        height: 220px;
+        width: 200px;
+        height: 200px;
     }
     
     .success-icon, .error-icon {
-        font-size: 4.5rem;
+        font-size: 4rem;
     }
     
     .success-title, .error-title {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+        line-height: 1.2;
     }
     
-    footer {
-        bottom: 20px;
-        left: 20px;
-        font-size: 0.9rem;
+    .success-message, .error-message {
+        font-size: 1.1rem;
+        line-height: 1.4;
+    }
+    
+    /* Fix footer positioning */
+    .section_footer {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.95);
+        margin-top: 40px;
+    }
+    
+    .footer__social {
+        justify-content: center;
+        margin-top: 15px;
+    }
+    
+    /* Fix utility sections */
+    .section_features {
+        padding: 40px 0;
+    }
+    
+    .section_features img {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        object-fit: contain;
+    }
+    
+    .feaure_utility .container {
+        padding: 0 20px;
+    }
+    
+    .feaure_utility .page-header {
+        font-size: 22px !important;
+        margin-bottom: 20px;
+    }
+    
+    .feaure_utility p {
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 15px;
+        padding: 0 10px;
     }
 }
 
 @media (max-width: 480px) {
-    .auth-title {
-        font-size: 1.6rem;
-        letter-spacing: 1px;
+    .page-header {
+        font-size: 20px !important;
+        line-height: 1.1;
     }
     
-    .code-number {
-        font-size: 2.5rem;
-        letter-spacing: 2px;
+    .page-subheader p {
+        font-size: 12px !important;
     }
     
-    .verify-btn {
-        padding: 22px 40px;
-        font-size: 1.1rem;
-        letter-spacing: 1px;
+    .bigtext {
+        font-size: 24px !important;
+        letter-spacing: 0.5px;
     }
     
-    .auth-content {
-        padding: 40px 25px;
+    .btn-primary {
+        padding: 12px 25px;
+        font-size: 12px;
+    }
+    
+    .modal-content {
+        padding: 20px 15px;
+        margin: 5px;
     }
     
     .guilloche-pattern {
-        width: 180px;
-        height: 180px;
+        width: 160px;
+        height: 160px;
+    }
+    
+    .success-icon, .error-icon {
+        font-size: 3.5rem;
+    }
+    
+    .success-title, .error-title {
+        font-size: 1.4rem;
+    }
+    
+    .section_features {
+        padding: 30px 0;
+    }
+    
+    .feaure_utility .page-header {
+        font-size: 18px !important;
+    }
+    
+    .feaure_utility p {
+        font-size: 12px;
+    }
+}
+
+/* Additional responsive fixes for very small screens */
+@media (max-width: 360px) {
+    .page-header {
+        font-size: 18px !important;
+    }
+    
+    .bigtext {
+        font-size: 20px !important;
+    }
+    
+    .btn-primary {
+        padding: 10px 20px;
+        font-size: 11px;
+    }
+    
+    .guilloche-pattern {
+        width: 140px;
+        height: 140px;
     }
 }
 
@@ -596,10 +765,30 @@ footer {
 }
 
 /* Banner and background */
-.section_banner { position: relative; min-height: calc(100vh - 70px); }
-.carousel-inner, .item { height: calc(100vh - 70px); display: flex; align-items: center; justify-content: center; }
-.banner__carousel__img, .backstretch { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-.backstretch img { width: 100%; height: 100%; object-fit: cover; }
+.section_banner { 
+  position: relative; 
+  min-height: calc(100vh - 70px); 
+  overflow: hidden;
+}
+.carousel-inner, .item { 
+  height: calc(100vh - 70px); 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+.banner__carousel__img, .backstretch { 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+}
+.backstretch img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  object-position: center center;
+}
 .section_banner::after {
     content: '';
     position: absolute; inset: 0;
